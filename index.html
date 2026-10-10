@@ -80,7 +80,7 @@
       color: var(--secondary-color);
     }
 
-    /* Hero Section con Degradado Azul Marino / Royal */
+    /* Hero Section */
     #hero {
       background: linear-gradient(135deg, var(--dark-navy) 0%, #1e3a8a 50%, var(--main-color) 100%);
       color: #fff;
@@ -104,6 +104,46 @@
       background: rgba(255, 255, 255, 0.1);
       padding: 0 10px;
       border-radius: 4px;
+    }
+
+    .target-role-badge {
+      display: inline-block;
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid var(--secondary-color);
+      color: var(--secondary-color);
+      padding: 0.5rem 1.2rem;
+      border-radius: 25px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-top: 1rem;
+      letter-spacing: 0.5px;
+    }
+
+    /* Estilo de la Foto de Perfil Redonda */
+    .profile-img-container {
+      width: 220px;
+      height: 220px;
+      margin: 0 auto 1.5rem auto;
+      position: relative;
+      border-radius: 50%;
+      padding: 5px;
+      background: linear-gradient(135deg, var(--main-color), var(--secondary-color));
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .profile-img-container:hover {
+      transform: scale(1.03);
+      box-shadow: 0 15px 35px rgba(56, 189, 248, 0.4);
+    }
+
+    .profile-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      background-color: var(--card-bg);
+      border: 3px solid var(--card-bg);
     }
 
     /* Botones y Efectos */
@@ -156,7 +196,7 @@
       border-radius: 2px;
     }
 
-    /* Tarjetas Interactivas con Elevación */
+    /* Tarjetas Interactivas */
     .card-project, .info-card {
       background: var(--card-bg);
       border: 1px solid var(--border-color);
@@ -239,27 +279,49 @@
         Hola, mi nombre es <span class="text-color-main">Denise Abigail</span><br>
         Soy <span>Ingeniera en Sistemas de Información</span>
       </h1>
+      
+      <!-- PUESTO AL QUE ASPIRAS EN EL HERO -->
+      <div>
+        <span class="target-role-badge">
+          <i class="fa fa-shield" aria-hidden="true"></i> Aspirante a: Especialista en Ciberseguridad, Inteligencia Artificial & Machine Learning
+        </span>
+      </div>
+
       <p class="mt-4 lead text-white" style="opacity: 0.9;">
-        Desarrolladora de software apasionada por la arquitectura, gestión de bases de datos, redes y creación de experiencias interactivas.
+        Desarrolladora de software enfocada en seguridad informática, aprendizaje automático, arquitectura backend, redes y soluciones interactivas.
       </p>
     </div>
   </section>
 
-  <!-- (2 & 3) Sección Quién soy y Educación (Tarjetas separadas) -->
+  <!-- (2 & 3) Sección Quién soy y Educación -->
   <section id="about">
     <div class="container">
       <h2 class="section-title text-center">Perfil Académico y Profesional</h2>
-      <div class="row">
+      
+      <div class="row align-items-center">
+
+        <!-- ========================================================================= -->
+        <!-- AQUÍ VA TU FOTO DE PERFIL REDONDA -->
+        <!-- Instrucciones: Guarda tu foto (ejemplo: foto.jpg) dentro de una carpeta -->
+        <!-- llamada "assets" o en la misma raíz, y cambia src="assets/tu-foto.jpg" -->
+        <!-- ========================================================================= -->
+        <!--
+        <div class="col-12 text-center mb-4">
+          <div class="profile-img-container">
+            <img src="assets/tu-foto.jpg" alt="Denise Abigail Rodríguez Andrade" class="profile-img">
+          </div>
+        </div>
+        -->
         
         <!-- Tarjeta: ¿Quién soy y qué puedo hacer? -->
         <div class="col-md-6">
           <div class="info-card h-100">
             <h3 class="h4 mb-3" style="color: var(--secondary-color);">¿Quién soy y qué puedo hacer?</h3>
             <p class="mb-3">
-              Soy estudiante de Ingeniería en Sistemas de Información en la Universidad de Sonora. Tengo la capacidad de diseñar, desarrollar y desplegar soluciones web, APIs RESTful, administrar servidores Linux en entornos virtuales y desplegar arquitecturas de redes seguras.
+              Soy estudiante de Ingeniería en Sistemas de Información en la Universidad de Sonora. Tengo la capacidad de diseñar, desarrollar y desplegar soluciones web, APIs RESTful, administrar servidores Linux en entornos virtuales, desplegar arquitecturas de redes y aplicar modelos de Machine Learning y protocolos de Ciberseguridad.
             </p>
             <p>
-              Me motiva transformar problemas complejos en sistemas eficientes, combinando lógica de backend, modelado de bases de datos y diseño de interfaces intuitivas orientadas a la experiencia de usuario.
+              <strong>Puesto al que me proyecto:</strong> Especialista e Investigadora en Ciberseguridad, Inteligencia Artificial e Ingeniería de Datos/Machine Learning.
             </p>
           </div>
         </div>
@@ -290,11 +352,13 @@
       <div class="row justify-content-center">
         <div class="col-md-10 text-center">
           <div class="info-card">
-            <h3 class="h4 mb-4 text-center">Tecnologías, Lenguajes y Competencias Sociales</h3>
+            <h3 class="h4 mb-4 text-center">Tecnologías, Lenguajes y Competencias</h3>
             <div class="d-flex flex-wrap justify-content-center">
               <span class="badge-custom">Java</span>
               <span class="badge-custom">JavaScript</span>
               <span class="badge-custom">Python / Flask</span>
+              <span class="badge-custom">Machine Learning / IA</span>
+              <span class="badge-custom">Ciberseguridad</span>
               <span class="badge-custom">HTML5 / CSS3</span>
               <span class="badge-custom">SQL / SQLite / MySQL</span>
               <span class="badge-custom">Cisco Packet Tracer</span>
@@ -387,7 +451,7 @@
     </div>
   </section>
 
-  <!-- (7) Sección de Blogs (Incluyendo Redes y Bases de Datos) -->
+  <!-- (7) Sección de Blogs -->
   <section id="blogs">
     <div class="container">
       <h2 class="section-title text-center">Blogs (Infraestructura y Redes)</h2>
@@ -448,7 +512,6 @@
     const themeIcon = document.getElementById('themeIcon');
     const htmlElement = document.documentElement;
 
-    // Verificar preferencia guardada
     const savedTheme = localStorage.getItem('theme') || 'dark';
     htmlElement.setAttribute('data-theme', savedTheme);
     updateIcon(savedTheme);
