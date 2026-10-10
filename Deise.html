@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portafolio | Denise Abigail Rodríguez Andrade</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-hover: #0284c7;
+      --border: #334155;
+      --tag-bg: #0f172a;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      padding: 3rem 1.5rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      margin-bottom: 2rem;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      font-size: 1.25rem;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+      color: var(--text-main);
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    section {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+    }
+
+    .card h3 {
+      color: var(--text-main);
+      margin-bottom: 0.5rem;
+      font-size: 1.15rem;
+    }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tag {
+      background: var(--tag-bg);
+      color: var(--accent);
+      border: 1px solid var(--border);
+      padding: 0.35rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--accent);
+      color: #0f172a;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: background 0.2s ease;
+    }
+
+    .btn:hover {
+      background: var(--accent-hover);
+      color: #ffffff;
+    }
+
+    .blog-item {
+      border-left: 3px solid var(--accent);
+      padding-left: 1.25rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .blog-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .blog-item h3 {
+      font-size: 1.2rem;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .blog-substep {
+      margin-bottom: 0.75rem;
+    }
+
+    .blog-substep h4 {
+      font-size: 0.95rem;
+      color: var(--text-main);
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .blog-substep p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      padding: 1.5rem 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- 1. Nombre completo & 2. Puesto al que aspiras -->
+    <header>
+      <h1>Denise Abigail Rodríguez Andrade</h1>
+      <div class="subtitle">Ingeniera en Sistemas de Información | Desarrolladora de Software</div>
+      <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">
+        Enfocada en arquitectura de software, gestión de bases de datos y desarrollo de interfaces interactivas.
+      </p>
+    </header>
+
+    <!-- 3. Descripción -->
+    <section>
+      <h2 class="section-title">¿Quién soy y qué puedo hacer?</h2>
+      <div class="grid-2">
+        <div>
+          <h3 style="color: var(--accent); margin-bottom: 0.5rem;">¿Quién eres?</h3>
+          <p style="color: var(--text-muted);">
+            Soy estudiante de la carrera de Ingeniería en Sistemas de Información en la Universidad de Sonora. Me apasiona el diseño de soluciones tecnológicas integrales, desde la conceptualización de interfaz de usuario hasta la implementación lógica y despliegue de infraestructura backend.
+          </p>
+        </div>
+        <div>
+          <h3 style="color: var(--accent); margin-bottom: 0.5rem;">¿Qué puedes hacer?</h3>
+          <p style="color: var(--text-muted);">
+            Tengo la capacidad de diseñar e implementar aplicaciones web, APIs RESTful, administrar servidores Linux en entornos virtualizados (Ubuntu Server/Docker), estructurar bases de datos relacionales (SQL) y modelar interfaces intuitivas enfocadas en la experiencia de usuario (UX/UI).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Educación -->
+    <section>
+      <h2 class="section-title">Educación</h2>
+      <div class="card">
+        <h3>Ingeniería en Sistemas de Información</h3>
+        <p style="color: var(--accent); font-weight: 500;">Universidad de Sonora (UNISON) — Campus Hermosillo</p>
+        <p>Formación enfocada en ingeniería de software, arquitectura de sistemas, gestión de bases de datos, redes y administración de infraestructura tecnológica.</p>
+      </div>
+    </section>
+
+    <!-- 5. Habilidades -->
+    <section>
+      <h2 class="section-title">Habilidades</h2>
+      <div class="grid-2">
+        <div>
+          <h3 style="margin-bottom: 0.75rem; color: var(--text-main);">Tecnologías y Frameworks</h3>
+          <div class="skills-list">
+            <span class="tag">Python (Flask)</span>
+            <span class="tag">SQL / SQLite / MySQL</span>
+            <span class="tag">Ubuntu Server / Docker</span>
+            <span class="tag">Git / GitHub</span>
+            <span class="tag">HTML5 / CSS3 / JS</span>
+            <span class="tag">Figma / Canva</span>
+            <span class="tag">VirtualBox</span>
+          </div>
+        </div>
+        <div>
+          <h3 style="margin-bottom: 0.75rem; color: var(--text-main);">Habilidades Sociales</h3>
+          <div class="skills-list">
+            <span class="tag">Resolución de problemas</span>
+            <span class="tag">Trabajo en equipo</span>
+            <span class="tag">Pensamiento analítico</span>
+            <span class="tag">Comunicación técnica</span>
+            <span class="tag">Adaptabilidad</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Proyectos (Tarea 2) -->
+    <section>
+      <h2 class="section-title">Proyectos (Tarea 2)</h2>
+      <div class="grid-2">
+
+        <div class="card">
+          <h3>1. Interfaz de Login Biblioteca</h3>
+          <p>Diseño e implementación del flujo de autenticación e interfaz inicial para una plataforma de biblioteca digital.</p>
+          <a href="https://github.com/deniseandrade17r-afk/Interfaz-de-biblioteca.git" target="_blank" class="btn">Ver Repositorio</a>
+        </div>
+
+        <div class="card">
+          <h3>2. Interfaz de Ferretería</h3>
+          <p>Prototipo de sistema punto de venta y catálogo de artículos para la gestión comercial de una ferretería.</p>
+          <a href="https://github.com/deniseandrade17r-afk/Interfaz-de-ferreter-a.git" target="_blank" class="btn">Ver Repositorio</a>
+        </div>
+
+        <div class="card">
+          <h3>3. Interfaz de Restaurante</h3>
+          <p>Diseño de experiencia visual para menú interactivo y pedidos dentro de un establecimiento gastronómico.</p>
+          <a href="https://github.com/deniseandrade17r-afk/Interfaz-de-restaurante.git" target="_blank" class="btn">Ver Repositorio</a>
+        </div>
+
+        <div class="card">
+          <h3>4. Empresa Turística "Sonora Aventuras"</h3>
+          <p>Plataforma e interfaz web orientada a la promoción de destinos turísticos regionales y reserva de recorridos.</p>
+          <a href="https://github.com/deniseandrade17r-afk/Interfaz-de-guia-turistica.git" target="_blank" class="btn">Ver Repositorio</a>
+        </div>
+
+        <div class="card">
+          <h3>5. Videojuego de Cocina ("Alquimia Chef")</h3>
+          <p>Diseño UX/UI de interfaz dinámica y mecánicas interactivas para un videojuego educativo de cocina.</p>
+          <a href="https://github.com/deniseandrade17r-afk/Interfaz-de-videojuego-de-cocina.git" target="_blank" class="btn">Ver Repositorio</a>
+        </div>
+
+        <div class="card">
+          <h3>6. Videojuego de Vocales</h3>
+          <p>Interfaz interactiva orientada al aprendizaje infantil mediante mecánicas visuales lúdicas.</p>
+          <a href="https://github.com/deniseandrade17r-afk/Interfaz-de-videojuego-de-vocales.git" target="_blank" class="btn">Ver Repositorio</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 7. Blogs -->
+    <section>
+      <h2 class="section-title">Blogs (Proyectos de Infraestructura y Bases de Datos)</h2>
+
+      <!-- Proyecto de Blog 1 -->
+      <div class="blog-item">
+        <h3>Blog 1: Administración y Despliegue de Base de Datos Servidor con Ubuntu Server</h3>
+        
+        <div class="blog-substep">
+          <h4>a. Descripción</h4>
+          <p>Configuración de un entorno de servidor virtualizado para gestionar bases de datos relacionales en alta disponibilidad y acceso remoto seguro.</p>
+        </div>
+
+        <div class="blog-substep">
+          <h4>b. Requerimientos del cliente</h4>
+          <p>Se solicitó un entorno aislado en Linux accesible mediante OpenSSH que permita alojar un sistema gestor de bases de datos seguro y eficiente para almacenamiento de inventarios.</p>
+        </div>
+
+        <div class="blog-substep">
+          <h4>c. ¿Cómo se diseñó la solución?</h4>
+          <p>Se optó por una máquina virtual en Oracle VM VirtualBox ejecutando Ubuntu Server. Se definió una arquitectura de red en modo adaptador puente (Bridge) para asignación de IP estática y reglas de firewall estrictas.</p>
+        </div>
+
+        <div class="blog-substep">
+          <h4>d. ¿Cómo se implementó la solución?</h4>
+          <p>Se instaló la imagen de Ubuntu Server, se configuró el servicio SSH para conexiones remotas con claves criptográficas y se instaló el motor gestor de base de datos ejecutando scripts de inicialización y asignación de usuarios con privilegios restringidos.</p>
+        </div>
+
+        <div class="blog-substep">
+          <h4>e. ¿Cuál fue el resultado?</h4>
+          <p>Un servidor funcional y robusto listo para producción escolar, con tiempos de respuesta óptimos y conectividad remota validada.</p>
+        </div>
+      </div>
+
+      <!-- Proyecto de Blog 2 -->
+      <div class="blog-item">
+        <h3>Blog 2: API RESTful en Python Flask con Almacenamiento en SQLite y JSON</h3>
+        
+        <div class="blog-substep">
+          <h4>a. Descripción</h4>
+          <p>Desarrollo de un servicio web tipo API REST para la gestión y control de inventarios con persistencia de datos relacional y respaldo en archivos JSON.</p>
+        </div>
+
+        <div class="blog-substep">
+          <h4>b. Requerimientos del cliente</h4>
+          <p>Permitir operaciones CRUD (Crear, Leer, Actualizar, Eliminar) de productos a través de endpoints HTTP accesibles para aplicaciones web o móviles.</p>
+        </div>
+
+        <div class="blog-substep">
+          <h4>c. ¿Cómo se diseñó la solución?</h4>
+          <p>Se estructuró una arquitectura de backend ligera con Python utilizando el microframework Flask, definiendo modelos de datos relacionales en SQLite y serializadores JSON para las respuestas de la API.</p>
+        </div>
+
+        <div class="blog-substep">
+          <h4>d. ¿Cómo se implementó la solución?</h4>
+          <p>Se construyeron las rutas HTTP (`GET`, `POST`, `PUT`, `DELETE`), integrando manejo de excepciones, validación de parámetros de entrada y almacenamiento persistente en la base de datos local.</p>
+        </div>
+
+        <div class="blog-substep">
+          <h4>e. ¿Cuál fue el resultado?</h4>
+          <p>Una API REST rápida y funcional que responde en formato JSON con soporte para pruebas mediante Postman y consumo desde aplicaciones cliente.</p>
+        </div>
+      </div>
+
+    </section>
+
+    <footer>
+      <p>&copy; 2026 Denise Abigail Rodríguez Andrade — Creado con GitHub Pages</p>
+    </footer>
+
+  </div>
+
+</body>
+</html>
