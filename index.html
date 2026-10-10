@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,32 +12,85 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
   
   <style>
+    /* Variables de Color: Azul Marino, Azul Royal y Azul Claro */
     :root {
-      --main-color: #02aab0;
-      --secondary-color: #00cdac;
+      --main-color: #2563eb;
+      --secondary-color: #38bdf8;
+      --dark-navy: #0f172a;
+      --card-light: #ffffff;
+      --card-dark: #1e293b;
+      --text-light: #334155;
+      --text-dark: #f1f5f9;
+      --bg-light: #f8fafc;
+      --bg-dark: #0b0f19;
+      --border-light: #e2e8f0;
+      --border-dark: #334155;
+    }
+
+    [data-theme="light"] {
+      --bg-main: var(--bg-light);
+      --card-bg: var(--card-light);
+      --text-main: var(--text-light);
+      --border-color: var(--border-light);
+    }
+
+    [data-theme="dark"] {
+      --bg-main: var(--bg-dark);
+      --card-bg: var(--card-dark);
+      --text-main: var(--text-dark);
+      --border-color: var(--border-dark);
     }
 
     body {
       font-family: 'Open Sans', sans-serif;
-      color: #777;
-      background-color: #f8f9fa;
+      color: var(--text-main);
+      background-color: var(--bg-main);
+      transition: background-color 0.3s ease, color 0.3s ease;
+      position: relative;
     }
 
     h1, h2, h3, h4, h5, h6 {
       font-family: 'Montserrat', sans-serif;
       font-weight: 700;
-      color: #272343;
+      color: var(--text-main);
     }
 
-    /* Hero Section con Degradado Simplefolio */
+    /* Botón flotante de Cambio de Tema */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      transition: transform 0.2s ease, background 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      transform: scale(1.1);
+      color: var(--secondary-color);
+    }
+
+    /* Hero Section con Degradado Azul Marino / Royal */
     #hero {
-      background: linear-gradient(135deg, var(--main-color) 0%, var(--secondary-color) 100%);
+      background: linear-gradient(135deg, var(--dark-navy) 0%, #1e3a8a 50%, var(--main-color) 100%);
       color: #fff;
-      min-height: 85vh;
+      min-height: 80vh;
       display: flex;
       align-items: center;
       text-align: left;
-      padding: 4rem 0;
+      padding: 5rem 0;
+      position: relative;
+      overflow: hidden;
     }
 
     #hero h1 {
@@ -47,50 +100,42 @@
     }
 
     #hero h1 span {
-      color: #272343;
-      background: rgba(255, 255, 255, 0.2);
+      color: var(--secondary-color);
+      background: rgba(255, 255, 255, 0.1);
       padding: 0 10px;
       border-radius: 4px;
     }
 
-    /* Botones estilo Simplefolio */
+    /* Botones y Efectos */
     .cta-btn {
       display: inline-block;
       font-family: 'Montserrat', sans-serif;
       font-weight: 600;
       text-transform: uppercase;
-      padding: 1rem 2rem;
-      border-radius: 4px;
-      transition: all 0.3s ease;
+      padding: 0.8rem 1.8rem;
+      border-radius: 6px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       text-decoration: none !important;
-    }
-
-    .cta-btn--hero {
-      background: #fff;
-      color: var(--main-color);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    }
-
-    .cta-btn--hero:hover {
-      background: #272343;
-      color: #fff;
-      transform: translateY(-2px);
     }
 
     .cta-btn--secondary {
       border: 2px solid var(--main-color);
       color: var(--main-color);
+      background: transparent;
     }
 
     .cta-btn--secondary:hover {
       background: var(--main-color);
       color: #fff;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
     }
 
     section {
       padding: 5rem 0;
-      border-bottom: 1px solid #e5e5e5;
-      background: #fff;
+      border-bottom: 1px solid var(--border-color);
+      background: var(--bg-main);
+      transition: background-color 0.3s ease, border-color 0.3s ease;
     }
 
     .section-title {
@@ -98,64 +143,94 @@
       font-size: 2.2rem;
       text-transform: uppercase;
       letter-spacing: 2px;
+      position: relative;
     }
 
-    .card-project {
-      border: none;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-      border-radius: 8px;
-      transition: transform 0.3s ease;
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 4px;
+      background: var(--secondary-color);
+      margin: 10px auto 0 auto;
+      border-radius: 2px;
+    }
+
+    /* Tarjetas Interactivas con Elevación */
+    .card-project, .info-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      border-radius: 12px;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease;
       margin-bottom: 2rem;
-      background: #fff;
-      padding: 1.5rem;
+      padding: 2rem;
     }
 
-    .card-project:hover {
-      transform: translateY(-5px);
+    .card-project:hover, .info-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 15px 35px rgba(37, 99, 235, 0.15);
+      border-color: var(--main-color);
     }
 
     .badge-custom {
-      background: #e2f8f8;
-      color: var(--main-color);
+      background: rgba(37, 99, 235, 0.1);
+      color: var(--secondary-color);
       font-weight: 600;
       padding: 0.5rem 1rem;
       border-radius: 20px;
       font-size: 0.85rem;
       margin-right: 0.5rem;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.6rem;
       display: inline-block;
+      border: 1px solid rgba(56, 189, 248, 0.2);
     }
 
     /* Blog / Infraestructura */
     .blog-card {
-      background: #fdfdfd;
-      border-left: 4px solid var(--main-color);
-      padding: 2rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-left: 5px solid var(--main-color);
+      padding: 2.2rem;
       margin-bottom: 2rem;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-      border-radius: 0 8px 8px 0;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      border-radius: 0 12px 12px 0;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .blog-card:hover {
+      transform: translateX(5px);
+      box-shadow: 0 12px 35px rgba(37, 99, 235, 0.15);
     }
 
     footer {
-      background: #1a1a1a;
+      background: var(--dark-navy);
       color: #fff;
       padding: 3rem 0;
       text-align: center;
+      border-top: 1px solid var(--border-dark);
     }
 
     .social-links a {
       color: #fff;
       font-size: 1.5rem;
       margin: 0 1rem;
-      transition: color 0.3s;
+      transition: color 0.3s, transform 0.2s;
+      display: inline-block;
     }
 
     .social-links a:hover {
       color: var(--secondary-color);
+      transform: scale(1.2);
     }
   </style>
 </head>
 <body>
+
+  <!-- Botón Modo Oscuro / Claro -->
+  <button class="theme-toggle" id="themeToggle" title="Cambiar modo claro/oscuro">
+    <i class="fa fa-moon-o" id="themeIcon"></i>
+  </button>
 
   <!-- (1) Sección de Héroes -->
   <section id="hero">
@@ -164,106 +239,147 @@
         Hola, mi nombre es <span class="text-color-main">Denise Abigail</span><br>
         Soy <span>Ingeniera en Sistemas de Información</span>
       </h1>
-      <p class="mt-4 lead text-white">
-        Desarrolladora de software enfocada en arquitectura, bases de datos e interfaces interactivas.
-      </p>
-      <p class="hero-cta mt-4">
-        <a class="cta-btn cta-btn--hero" href="#about">Conoce más ⚡️</a>
+      <p class="mt-4 lead text-white" style="opacity: 0.9;">
+        Desarrolladora de software apasionada por la arquitectura, gestión de bases de datos, redes y creación de experiencias interactivas.
       </p>
     </div>
   </section>
 
-  <!-- (2) Sección Acerca de / Educación / Habilidades -->
+  <!-- (2 & 3) Sección Quién soy y Educación (Tarjetas separadas) -->
   <section id="about">
     <div class="container">
-      <h2 class="section-title text-center">Acerca de Mí</h2>
-      <div class="row align-items-center">
-        <div class="col-md-6 mb-4 mb-md-0">
-          <div class="p-4 bg-light rounded shadow-sm">
-            <h3 class="h4 mb-3 text-dark">¿Quién eres y qué puedes hacer?</h3>
-            <p>
-              Soy estudiante de Ingeniería en Sistemas de Información en la Universidad de Sonora. Tengo la capacidad de diseñar, desarrollar y desplegar soluciones web, APIs RESTful y administrar servidores Linux en entornos virtuales.
+      <h2 class="section-title text-center">Perfil Académico y Profesional</h2>
+      <div class="row">
+        
+        <!-- Tarjeta: ¿Quién soy y qué puedo hacer? -->
+        <div class="col-md-6">
+          <div class="info-card h-100">
+            <h3 class="h4 mb-3" style="color: var(--secondary-color);">¿Quién soy y qué puedo hacer?</h3>
+            <p class="mb-3">
+              Soy estudiante de Ingeniería en Sistemas de Información en la Universidad de Sonora. Tengo la capacidad de diseñar, desarrollar y desplegar soluciones web, APIs RESTful, administrar servidores Linux en entornos virtuales y desplegar arquitecturas de redes seguras.
             </p>
             <p>
-              <strong>Educación:</strong> Carrera cursada en la Universidad de Sonora (UNISON) - Campus Hermosillo.
+              Me motiva transformar problemas complejos en sistemas eficientes, combinando lógica de backend, modelado de bases de datos y diseño de interfaces intuitivas orientadas a la experiencia de usuario.
             </p>
           </div>
         </div>
+
+        <!-- Tarjeta: Educación -->
         <div class="col-md-6">
-          <h3 class="h4 mb-3">Habilidades Tecnológicas y Sociales</h3>
-          <div class="mb-4">
-            <span class="badge-custom">Python / Flask</span>
-            <span class="badge-custom">SQL / SQLite / MySQL</span>
-            <span class="badge-custom">Ubuntu Server / Docker</span>
-            <span class="badge-custom">Git & GitHub</span>
-            <span class="badge-custom">HTML5 / CSS3 / JS</span>
-            <span class="badge-custom">Figma / Canva</span>
-            <span class="badge-custom">Trabajo en equipo</span>
-            <span class="badge-custom">Resolución de problemas</span>
-            <span class="badge-custom">Pensamiento analítico</span>
+          <div class="info-card h-100">
+            <h3 class="h4 mb-3" style="color: var(--secondary-color);">Educación e Idiomas</h3>
+            <p class="mb-3">
+              <strong>Carrera cursada:</strong> Ingeniería en Sistemas de Información (ISI) — Universidad de Sonora (UNISON), Campus Hermosillo.
+            </p>
+            <p class="mb-3">
+              <strong>Idiomas y Lenguas:</strong><br>
+              • Inglés: Nivel intermedio-avanzado (Fluidez técnica y presentación de proyectos).<br>
+              • Chino Tradicional (繁體中文): Nivel inicial / formación continua (Práctica activa de escritura y vocabulario).
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- (5) Habilidades Tecnológicas y Sociales -->
+  <section id="skills">
+    <div class="container">
+      <h2 class="section-title text-center">Habilidades</h2>
+      <div class="row justify-content-center">
+        <div class="col-md-10 text-center">
+          <div class="info-card">
+            <h3 class="h4 mb-4 text-center">Tecnologías, Lenguajes y Competencias Sociales</h3>
+            <div class="d-flex flex-wrap justify-content-center">
+              <span class="badge-custom">Java</span>
+              <span class="badge-custom">JavaScript</span>
+              <span class="badge-custom">Python / Flask</span>
+              <span class="badge-custom">HTML5 / CSS3</span>
+              <span class="badge-custom">SQL / SQLite / MySQL</span>
+              <span class="badge-custom">Cisco Packet Tracer</span>
+              <span class="badge-custom">Ubuntu Server / Docker</span>
+              <span class="badge-custom">Git & GitHub</span>
+              <span class="badge-custom">Figma / Canva</span>
+              <span class="badge-custom">Trabajo en equipo</span>
+              <span class="badge-custom">Resolución de problemas</span>
+              <span class="badge-custom">Pensamiento analítico</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- (3) Sección de Proyectos (Tarea 2) -->
-  <section id="projects" class="bg-light">
+  <!-- (6) Sección de Proyectos (Repositorios) -->
+  <section id="projects">
     <div class="container">
-      <h2 class="section-title text-center">Proyectos (Tarea 2)</h2>
+      <h2 class="section-title text-center">Proyectos</h2>
       <div class="row">
 
         <!-- Proyecto 1 -->
         <div class="col-md-4">
-          <div class="card-project h-100">
-            <h3>Interfaz de Biblioteca</h3>
-            <p class="text-muted small">Diseño de flujo de autenticación e interfaz inicial para biblioteca digital.</p>
-            <a href="https://github.com/deniseandrade17r-afk/Interfaz-de-biblioteca.git" target="_blank" class="cta-btn cta-btn--secondary btn-sm mt-2">Ver Repositorio</a>
+          <div class="card-project h-100 d-flex flex-column justify-content-between">
+            <div>
+              <h3>Interfaz de Biblioteca</h3>
+              <p class="text-muted small">Diseño de flujo de autenticación e interfaz inicial para plataforma de biblioteca digital.</p>
+            </div>
+            <a href="https://github.com/deniseandrade17r-afk/Interfaz-de-biblioteca.git" target="_blank" class="cta-btn cta-btn--secondary btn-sm mt-3 text-center">Ver Repositorio</a>
           </div>
         </div>
 
         <!-- Proyecto 2 -->
         <div class="col-md-4">
-          <div class="card-project h-100">
-            <h3>Interfaz de Ferretería</h3>
-            <p class="text-muted small">Prototipo de punto de venta y catálogo de artículos comerciales.</p>
-            <a href="https://github.com/deniseandrade17r-afk/Interfaz-de-ferreter-a.git" target="_blank" class="cta-btn cta-btn--secondary btn-sm mt-2">Ver Repositorio</a>
+          <div class="card-project h-100 d-flex flex-column justify-content-between">
+            <div>
+              <h3>Interfaz de Ferretería</h3>
+              <p class="text-muted small">Prototipo de punto de venta y catálogo de artículos comerciales para ferretería.</p>
+            </div>
+            <a href="https://github.com/deniseandrade17r-afk/Interfaz-de-ferreter-a.git" target="_blank" class="cta-btn cta-btn--secondary btn-sm mt-3 text-center">Ver Repositorio</a>
           </div>
         </div>
 
         <!-- Proyecto 3 -->
         <div class="col-md-4">
-          <div class="card-project h-100">
-            <h3>Interfaz de Restaurante</h3>
-            <p class="text-muted small">Experiencia visual para menú interactivo y gestión de pedidos.</p>
-            <a href="https://github.com/deniseandrade17r-afk/Interfaz-de-restaurante.git" target="_blank" class="cta-btn cta-btn--secondary btn-sm mt-2">Ver Repositorio</a>
+          <div class="card-project h-100 d-flex flex-column justify-content-between">
+            <div>
+              <h3>Interfaz de Restaurante</h3>
+              <p class="text-muted small">Experiencia visual para menú interactivo y gestión interna de pedidos gastronómicos.</p>
+            </div>
+            <a href="https://github.com/deniseandrade17r-afk/Interfaz-de-restaurante.git" target="_blank" class="cta-btn cta-btn--secondary btn-sm mt-3 text-center">Ver Repositorio</a>
           </div>
         </div>
 
         <!-- Proyecto 4 -->
         <div class="col-md-4 mt-4">
-          <div class="card-project h-100">
-            <h3>Sonora Aventuras</h3>
-            <p class="text-muted small">Plataforma web turística orientada a la promoción de destinos regionales.</p>
-            <a href="https://github.com/deniseandrade17r-afk/Interfaz-de-guia-turistica.git" target="_blank" class="cta-btn cta-btn--secondary btn-sm mt-2">Ver Repositorio</a>
+          <div class="card-project h-100 d-flex flex-column justify-content-between">
+            <div>
+              <h3>Sonora Aventuras</h3>
+              <p class="text-muted small">Plataforma web turística orientada a la promoción de destinos regionales y reservas.</p>
+            </div>
+            <a href="https://github.com/deniseandrade17r-afk/Interfaz-de-guia-turistica.git" target="_blank" class="cta-btn cta-btn--secondary btn-sm mt-3 text-center">Ver Repositorio</a>
           </div>
         </div>
 
         <!-- Proyecto 5 -->
         <div class="col-md-4 mt-4">
-          <div class="card-project h-100">
-            <h3>Videojuego Alquimia Chef</h3>
-            <p class="text-muted small">Diseño UX/UI de interfaz dinámica para videojuego educativo de cocina.</p>
-            <a href="https://github.com/deniseandrade17r-afk/Interfaz-de-videojuego-de-cocina.git" target="_blank" class="cta-btn cta-btn--secondary btn-sm mt-2">Ver Repositorio</a>
+          <div class="card-project h-100 d-flex flex-column justify-content-between">
+            <div>
+              <h3>Videojuego Alquimia Chef</h3>
+              <p class="text-muted small">Diseño UX/UI de interfaz dinámica y mecánicas interactivas para juego educativo.</p>
+            </div>
+            <a href="https://github.com/deniseandrade17r-afk/Interfaz-de-videojuego-de-cocina.git" target="_blank" class="cta-btn cta-btn--secondary btn-sm mt-3 text-center">Ver Repositorio</a>
           </div>
         </div>
 
         <!-- Proyecto 6 -->
         <div class="col-md-4 mt-4">
-          <div class="card-project h-100">
-            <h3>Videojuego de Vocales</h3>
-            <p class="text-muted small">Interfaz interactiva lúdica orientada al aprendizaje infantil.</p>
-            <a href="https://github.com/deniseandrade17r-afk/Interfaz-de-videojuego-de-vocales.git" target="_blank" class="cta-btn cta-btn--secondary btn-sm mt-2">Ver Repositorio</a>
+          <div class="card-project h-100 d-flex flex-column justify-content-between">
+            <div>
+              <h3>Videojuego de Vocales</h3>
+              <p class="text-muted small">Interfaz interactiva lúdica orientada al aprendizaje infantil de vocales y fonética.</p>
+            </div>
+            <a href="https://github.com/deniseandrade17r-afk/Interfaz-de-videojuego-de-vocales.git" target="_blank" class="cta-btn cta-btn--secondary btn-sm mt-3 text-center">Ver Repositorio</a>
           </div>
         </div>
 
@@ -271,32 +387,44 @@
     </div>
   </section>
 
-  <!-- (7) Sección de Blogs (Bases de datos y Servidores) -->
+  <!-- (7) Sección de Blogs (Incluyendo Redes y Bases de Datos) -->
   <section id="blogs">
     <div class="container">
-      <h2 class="section-title text-center">Blogs (Infraestructura y Bases de Datos)</h2>
+      <h2 class="section-title text-center">Blogs (Infraestructura y Redes)</h2>
       
-      <!-- Blog 1 -->
+      <!-- Blog 1: Redes (Packet Tracer) -->
       <div class="blog-card">
-        <h3 class="h4 text-dark mb-3">Blog 1: Configuración de Servidor Linux y Base de Datos</h3>
-        <ul class="list-unstyled">
-          <li class="mb-2"><strong>1. Descripción:</strong> Configuración de un servidor virtualizado en Ubuntu Server para gestión segura de bases de datos.</li>
-          <li class="mb-2"><strong>2. Requerimientos del cliente:</strong> Entorno aislado accesible por SSH con alta disponibilidad para respaldos.</li>
-          <li class="mb-2"><strong>3. ¿Cómo se diseñó la solución?:</strong> Uso de Oracle VM VirtualBox con adaptador puente e IP estática.</li>
-          <li class="mb-2"><strong>4. ¿Cómo se implementó la solución?:</strong> Instalación de Ubuntu Server, configuración de llaves OpenSSH y motor de base de datos con usuarios privilegiados.</li>
-          <li class="mb-2"><strong>5. ¿Cuál fue el resultado?:</strong> Un servidor funcional en red local con respuestas óptimas y acceso remoto verificado.</li>
+        <h3 class="h4 mb-3" style="color: var(--secondary-color);">Blog 1: Diseño e Implementación de Topología de Red Multinivel en Cisco Packet Tracer</h3>
+        <ul class="list-unstyled mb-0" style="line-height: 1.8;">
+          <li><strong>1. Descripción:</strong> Simulación y configuración integral de una red corporativa segmentada con subredes VLAN, switches multicapa y enrutamiento estático/dinámico.</li>
+          <li><strong>2. Requerimientos del cliente:</strong> Aislar el tráfico departamental (Administración, Ventas y TI), garantizar conectividad inter-VLAN y configurar servicios DHCP y servidores web simulados.</li>
+          <li><strong>3. ¿Cómo se diseñó la solución?:</strong> Se esquematizó una arquitectura jerárquica de tres capas (Núcleo, Distribución y Acceso), calculando tablas de direccionamiento IPv4 mediante VLSM para optimizar el uso de direcciones IP.</li>
+          <li><strong>4. ¿Cómo se implementó la solución?:</strong> Se configuraron los switches con puertos trunk y access, se habilitó el encapsulamiento 802.1Q en un router mediante subinterfaces (Router-on-a-Stick) y se establecieron protocolos de enrutamiento.</li>
+          <li><strong>5. ¿Cuál fue el resultado?:</strong> Una red robusta, escalable y con comunicación fluida y segura verificada a través de pruebas de paquetes ICMP (ping) exitosas entre subredes independientes.</li>
         </ul>
       </div>
 
-      <!-- Blog 2 -->
+      <!-- Blog 2: Base de Datos / Servidor Linux -->
       <div class="blog-card">
-        <h3 class="h4 text-dark mb-3">Blog 2: API RESTful en Flask con SQLite</h3>
-        <ul class="list-unstyled">
-          <li class="mb-2"><strong>1. Descripción:</strong> Desarrollo de servicio web para control de inventarios con persistencia relacional.</li>
-          <li class="mb-2"><strong>2. Requerimientos del cliente:</strong> Operaciones CRUD mediante endpoints HTTP consumibles por aplicaciones externas.</li>
-          <li class="mb-2"><strong>3. ¿Cómo se diseñó la solución?:</strong> Arquitectura de backend ligera con Python (Flask) y SQLite.</li>
-          <li class="mb-2"><strong>4. ¿Cómo se implementó la solución?:</strong> Creación de rutas HTTP, manejo de excepciones y serialización JSON.</li>
-          <li class="mb-2"><strong>5. ¿Cuál fue el resultado?:</strong> API rápida y robusta lista para pruebas de integración y consumo cliente.</li>
+        <h3 class="h4 mb-3" style="color: var(--secondary-color);">Blog 2: Configuración de Servidor Linux y Base de Datos en Ubuntu Server</h3>
+        <ul class="list-unstyled mb-0" style="line-height: 1.8;">
+          <li><strong>1. Descripción:</strong> Configuración de un entorno de servidor virtualizado para gestionar bases de datos relacionales con acceso remoto seguro.</li>
+          <li><strong>2. Requerimientos del cliente:</strong> Un entorno aislado en Linux accesible mediante OpenSSH que alojara un gestor de base de datos eficiente para inventarios.</li>
+          <li><strong>3. ¿Cómo se diseñó la solución?:</strong> Máquina virtual en Oracle VM VirtualBox con adaptador puente (Bridge) para IP estática y reglas estrictas de firewall.</li>
+          <li><strong>4. ¿Cómo se implementó la solución?:</strong> Instalación de Ubuntu Server, configuración de SSH con claves criptográficas y despliegue del motor gestor de base de datos con usuarios y privilegios restringidos.</li>
+          <li><strong>5. ¿Cuál fue el resultado?:</strong> Un servidor funcional listo para producción escolar, con tiempos de respuesta óptimos y conectividad remota validada.</li>
+        </ul>
+      </div>
+
+      <!-- Blog 3: API RESTful -->
+      <div class="blog-card">
+        <h3 class="h4 mb-3" style="color: var(--secondary-color);">Blog 3: Desarrollo de API RESTful en Python Flask con SQLite</h3>
+        <ul class="list-unstyled mb-0" style="line-height: 1.8;">
+          <li><strong>1. Descripción:</strong> Desarrollo de servicio web tipo API REST para control de inventarios con persistencia relacional.</li>
+          <li><strong>2. Requerimientos del cliente:</strong> Operaciones CRUD (Crear, Leer, Actualizar, Eliminar) mediante endpoints HTTP accesibles por aplicaciones externas.</li>
+          <li><strong>3. ¿Cómo se diseñó la solución?:</strong> Arquitectura de backend ligera con Python utilizando el microframework Flask y SQLite.</li>
+          <li><strong>4. ¿Cómo se implementó la solución?:</strong> Creación de rutas HTTP, manejo de excepciones, validación de parámetros y serialización JSON.</li>
+          <li><strong>5. ¿Cuál fue el resultado?:</strong> API rápida y robusta lista para pruebas con Postman y consumo desde aplicaciones cliente.</li>
         </ul>
       </div>
 
@@ -306,13 +434,42 @@
   <!-- Footer / Contacto -->
   <footer>
     <div class="container">
-      <p class="mb-3">&copy; 2026 Denise Abigail Rodríguez Andrade — Creado con estilo Simplefolio</p>
+      <p class="mb-3">&copy; 2026 Denise Abigail Rodríguez Andrade — Creado con Portafolio Web Profesional</p>
       <div class="social-links">
         <a href="https://github.com/deniseandrade17r-afk" target="_blank"><i class="fa fa-github"></i></a>
         <a href="mailto:deniseandrade17r@gmail.com" target="_blank"><i class="fa fa-envelope"></i></a>
       </div>
     </div>
   </footer>
+
+  <!-- Script para el Modo Oscuro / Claro -->
+  <script>
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const htmlElement = document.documentElement;
+
+    // Verificar preferencia guardada
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    htmlElement.setAttribute('data-theme', savedTheme);
+    updateIcon(savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = htmlElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      htmlElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateIcon(newTheme);
+    });
+
+    function updateIcon(theme) {
+      if (theme === 'dark') {
+        themeIcon.className = 'fa fa-moon-o';
+      } else {
+        themeIcon.className = 'fa fa-sun-o';
+      }
+    }
+  </script>
 
 </body>
 </html>
